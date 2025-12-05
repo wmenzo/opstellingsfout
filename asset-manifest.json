@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/opstellingsfout/static/css/main.a2341b08.css",
+    "main.js": "/opstellingsfout/static/js/main.bfaca87f.js",
+    "static/js/453.489a88c2.chunk.js": "/opstellingsfout/static/js/453.489a88c2.chunk.js",
+    "index.html": "/opstellingsfout/index.html",
+    "main.a2341b08.css.map": "/opstellingsfout/static/css/main.a2341b08.css.map",
+    "main.bfaca87f.js.map": "/opstellingsfout/static/js/main.bfaca87f.js.map",
+    "453.489a88c2.chunk.js.map": "/opstellingsfout/static/js/453.489a88c2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a2341b08.css",
+    "static/js/main.bfaca87f.js"
+  ]
+}
