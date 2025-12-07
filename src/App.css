@@ -1,262 +1,238 @@
-
+/* App.css */
 .app {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  user-select: none;
 }
 
 .controls {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .controls button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    min-height: 44px; /* Touch-friendly minimum height */
+  margin: 0 10px;
+  padding: 12px 24px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
 .controls button:hover {
-    background-color: #0056b3;
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .status {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .error-status {
-    color: #dc3545;
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 10px;
+  background-color: #ffebee;
+  color: #c62828;
+  border: 2px solid #ef5350;
+  animation: shake 0.5s ease-in-out;
 }
 
 .success-status {
-    color: #28a745;
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 10px;
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  border: 2px solid #66bb6a;
 }
 
-.formation-info {
-    color: #666;
-    font-size: 14px;
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
 
 .volleyball-court {
-    width: 350px;
-    height: 300px;
-    background-color: #f0f0f0;
-    border: 3px solid #333;
-    margin: 0 auto;
-    position: relative;
-    background-image:
-            linear-gradient(90deg, #ddd 1px, transparent 1px),
-            linear-gradient(#ddd 1px, transparent 1px);
-    background-size: 20px 20px;
-    touch-action: none; /* Prevent default touch behaviors like scrolling */
-    user-select: none; /* Prevent text selection */
+  position: relative;
+  width: 350px;
+  height: 300px;
+  background: #90EE90;
+  border: 4px solid #333;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
 
 .meter3 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #000, #333, #000);
+  transform: translateY(-50%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  z-index: 5;
+}
+
+.front-line-indicator {
     position: absolute;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: #ff6b6b;
-    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 4px 12px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.back-line-indicator {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 4px 12px;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.front-line-indicator {
+  top: 20px;
+}
+
+.back-line-indicator {
+  bottom: 20px;
 }
 
 .player {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 2;
-    touch-action: none; /* Prevent default touch behaviors */
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
+  position: absolute;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  transition: all 0.2s ease;
+  pointer-events: auto;
 }
 
-.player-circle {
-    width: 50px;
-    height: 50px;
-    background-color: #4CAF50;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    border: 2px solid #333;
-    transition: all 0.2s ease;
+.player:hover {
+  transform: translate(-50%, -50%) scale(1.05);
 }
 
-.player-name {
-    display: block;
-    font-size: 12px;
-    color: #333;
-    font-weight: bold;
-    margin-top: 5px;
-    white-space: nowrap;
+.player.dragging {
+  z-index: 20;
+  transform: translate(-50%, -50%) scale(1.1);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
 }
 
 .player.error .player-circle {
-    background-color: #f44336;
-    animation: pulse 1s infinite;
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  border-color: #b71c1c;
+  animation: errorPulse 1s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(244, 67, 54, 0.6);
 }
 
-.player.dragging .player-circle {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+.player.error .player-name {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #f44336;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+@keyframes errorPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.player-circle {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border: 3px solid #0d47a1;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.player-name {
+  font-size: 12px;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 4px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-weight: bold;
 }
 
 .instructions {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 5px;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 5px solid #2196F3;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
 }
 
 .instructions h3 {
-    margin-top: 0;
-    color: #333;
-}
-
-.instructions ul {
-    margin: 10px 0;
-    padding-left: 20px;
+  margin-top: 0;
+  color: #1565c0;
+  font-size: 20px;
 }
 
 .instructions li {
-    margin-bottom: 5px;
-    line-height: 1.4;
+  margin: 10px 0;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-/* Mobile Responsiveness */
+.instructions strong {
+  color: #1976d2;
+}
+
 @media (max-width: 768px) {
-    .app {
-        padding: 10px;
-    }
+  .app {
+    padding: 15px;
+  }
 
-    h1 {
-        font-size: 24px;
-        margin-bottom: 15px;
-    }
+  .volleyball-court {
+    width: 320px;
+    height: 270px;
+  }
 
-    .controls {
-        gap: 8px;
-        margin-bottom: 15px;
-    }
+  .player-circle {
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+  }
 
-    .controls button {
-        padding: 12px 16px;
-        font-size: 16px;
-        min-height: 48px; /* Larger touch targets for mobile */
-        flex: 1;
-        max-width: 200px;
-    }
-
-    .volleyball-court {
-        width: 320px;
-        height: 280px;
-        margin: 10px auto;
-    }
-
-    .player-circle {
-        width: 45px;
-        height: 45px;
-        font-size: 14px;
-    }
-
-    .player-name {
-        font-size: 11px;
-    }
-
-    .instructions {
-        margin: 15px auto;
-        padding: 15px;
-    }
-
-    .error-status,
-    .success-status {
-        font-size: 16px;
-    }
+  .controls button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 }
 
-@media (max-width: 480px) {
-    .app {
-        padding: 5px;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
-
-    .volleyball-court {
-        width: 300px;
-        height: 250px;
-    }
-
-    .player-circle {
-        width: 40px;
-        height: 40px;
-        font-size: 12px;
-    }
-
-    .player-name {
-        font-size: 10px;
-    }
-
-    .controls button {
-        font-size: 14px;
-        padding: 10px 12px;
-    }
-
-    .instructions {
-        padding: 10px;
-        margin: 10px auto;
-    }
-}
-
-/* Prevent text selection and improve touch experience */
-* {
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* Improve button touch targets */
-button {
-    min-height: 44px;
-    min-width: 44px;
-}
-
-@media (hover: hover) {
-    .player:hover .player-circle {
-        transform: scale(1.05);
-    }
+/* Prevent text selection during dragging */
+.volleyball-court * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
