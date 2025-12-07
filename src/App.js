@@ -268,6 +268,19 @@ const App = () => {
         setPlayers(validatedPlayers);
     }, []);
 
+    // // Mouse down - start slepen
+    // const handleMouseDown = (e, player) => {
+    //     const rect = e.currentTarget.getBoundingClientRect();
+    //     const courtRect = e.currentTarget.closest('.volleyball-court').getBoundingClientRect();
+    //
+    //     setDraggedPlayer(player);
+    //     setDragOffset({
+    //         x: e.clientX - courtRect.left - player.x,
+    //         y: e.clientY - courtRect.top - player.y
+    //     });
+    //
+    //     e.preventDefault();
+    // };
     // Mouse down - start slepen
     const handleMouseDown = (e, player) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -277,6 +290,20 @@ const App = () => {
         setDragOffset({
             x: e.clientX - courtRect.left - player.x,
             y: e.clientY - courtRect.top - player.y
+        });
+
+        e.preventDefault();
+    };
+
+    // Touch start - start slepen (mobile)
+    const handleTouchStart = (e, player) => {
+        const touch = e.touches[0];
+        const courtRect = e.currentTarget.closest('.volleyball-court').getBoundingClientRect();
+
+        setDraggedPlayer(player);
+        setDragOffset({
+            x: touch.clientX - courtRect.left - player.x,
+            y: touch.clientY - courtRect.top - player.y
         });
 
         e.preventDefault();
@@ -307,11 +334,76 @@ const App = () => {
         setPlayers(validatedPlayers);
     };
 
+    // Touch move - tijdens slepen (mobile)
+    const handleTouchMove = (e) => {
+        if (!draggedPlayer) return;
+
+        const touch = e.touches[0];
+        const courtRect = e.currentTarget.getBoundingClientRect();
+        let newX = touch.clientX - courtRect.left - dragOffset.x;
+        let newY = touch.clientY - courtRect.top - dragOffset.y;
+
+        // Beperk beweging binnen het veld (met speler radius)
+        const playerRadius = 25;
+        newX = Math.max(playerRadius, Math.min(courtDimensions.width - playerRadius, newX));
+        newY = Math.max(playerRadius, Math.min(courtDimensions.height - playerRadius, newY));
+
+        // Update speler positie
+        const updatedPlayers = players.map(player =>
+            player.id === draggedPlayer.id
+                ? { ...player, x: newX, y: newY }
+                : player
+        );
+
+        // Valideer en update
+        const validatedPlayers = validatePositions(updatedPlayers);
+        setPlayers(validatedPlayers);
+
+        e.preventDefault(); // Prevent scrolling
+    };
+
     // Mouse up - stop slepen
     const handleMouseUp = () => {
         setDraggedPlayer(null);
         setDragOffset({ x: 0, y: 0 });
     };
+
+    // Touch end - stop slepen (mobile)
+    const handleTouchEnd = () => {
+        setDraggedPlayer(null);
+        setDragOffset({ x: 0, y: 0 });
+    };
+
+    // // Mouse move - tijdens slepen
+    // const handleMouseMove = (e) => {
+    //     if (!draggedPlayer) return;
+    //
+    //     const courtRect = e.currentTarget.getBoundingClientRect();
+    //     let newX = e.clientX - courtRect.left - dragOffset.x;
+    //     let newY = e.clientY - courtRect.top - dragOffset.y;
+    //
+    //     // Beperk beweging binnen het veld (met speler radius)
+    //     const playerRadius = 25;
+    //     newX = Math.max(playerRadius, Math.min(courtDimensions.width - playerRadius, newX));
+    //     newY = Math.max(playerRadius, Math.min(courtDimensions.height - playerRadius, newY));
+    //
+    //     // Update speler positie
+    //     const updatedPlayers = players.map(player =>
+    //         player.id === draggedPlayer.id
+    //             ? { ...player, x: newX, y: newY }
+    //             : player
+    //     );
+    //
+    //     // Valideer en update
+    //     const validatedPlayers = validatePositions(updatedPlayers);
+    //     setPlayers(validatedPlayers);
+    // };
+    //
+    // // Mouse up - stop slepen
+    // const handleMouseUp = () => {
+    //     setDraggedPlayer(null);
+    //     setDragOffset({ x: 0, y: 0 });
+    // };
 
     // Reset naar standaard opstelling
     const resetPositions = () => {
@@ -358,6 +450,8 @@ const App = () => {
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseUp}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
             >
                 {/* 3Meter */}
                 <div className="meter3" style={{ top: netY }}></div>
@@ -373,6 +467,7 @@ const App = () => {
                             cursor: draggedPlayer?.id === player.id ? 'grabbing' : 'grab'
                         }}
                         onMouseDown={(e) => handleMouseDown(e, player)}
+                        onTouchStart={(e) => handleTouchStart(e, player)}
                     >
                         <div className="player-circle">
                             {player.id}
