@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/opstellingsfout.git/static/css/main.a2341b08.css",
-    "main.js": "/opstellingsfout.git/static/js/main.3871c1f3.js",
-    "static/js/453.489a88c2.chunk.js": "/opstellingsfout.git/static/js/453.489a88c2.chunk.js",
-    "index.html": "/opstellingsfout.git/index.html",
-    "main.a2341b08.css.map": "/opstellingsfout.git/static/css/main.a2341b08.css.map",
-    "main.3871c1f3.js.map": "/opstellingsfout.git/static/js/main.3871c1f3.js.map",
-    "453.489a88c2.chunk.js.map": "/opstellingsfout.git/static/js/453.489a88c2.chunk.js.map"
+    "main.css": "/opstellingsfout/static/css/main.a2341b08.css",
+    "main.js": "/opstellingsfout/static/js/main.dc1cf915.js",
+    "static/js/453.489a88c2.chunk.js": "/opstellingsfout/static/js/453.489a88c2.chunk.js",
+    "index.html": "/opstellingsfout/index.html",
+    "main.a2341b08.css.map": "/opstellingsfout/static/css/main.a2341b08.css.map",
+    "main.dc1cf915.js.map": "/opstellingsfout/static/js/main.dc1cf915.js.map",
+    "453.489a88c2.chunk.js.map": "/opstellingsfout/static/js/453.489a88c2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a2341b08.css",
-    "static/js/main.3871c1f3.js"
+    "static/js/main.dc1cf915.js"
   ]
 }
